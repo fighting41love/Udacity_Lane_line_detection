@@ -217,8 +217,8 @@ plt.imshow(lines_edges)
 ###### a. Deal with left and right edges separately, based on 
       i. the absolute value of the slope is larger than 0.5
      ii. the left lane edges should lie in the left part of the image; the right lane edges should lie in the right part of the image
-###### b. fit the points with np.polyfit
-###### c. smooth the slope and bias with a size=10 queue. The idea is that the slope and bias should be similar in the past 10 frames.  The experimental results are very good. After smoothing the slope and bias, the lines won't shake like an earthquake. 
+###### b. Fit the points with np.polyfit
+###### c. Smooth the slope and bias with a size=10 queue. The idea is that the slope and bias should be similar in the past 10 frames.  The experimental results are very good. After smoothing the slope and bias, the lines won't shake like an earthquake. 
 
 ```
 def draw_lines(img, lines, color=[255, 0, 0], thickness=10):
@@ -279,7 +279,7 @@ def draw_lines(img, lines, color=[255, 0, 0], thickness=10):
         l_m, l_b = np.polyfit(left_lane_lines_x, left_lane_lines_y, 1)
         left_exist = True
     
-    # Smoothing the slope and bias to make the lane line detection roust.
+    # Smoothing the slope and bias to make the lane line detection robust.
     if left_exist:
         if left_q_m.size() < 10:
             left_q_m.put(l_m)
